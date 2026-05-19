@@ -406,7 +406,29 @@
   </div>
 
   <script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbynqEI8CozdTza9C5zpQOTwnQTkwLFJtKbLzXcrPNb5hVDF_lPEITqELXZLHRN4Zk1ckA/exec";
+    function renderSheetKpis(data) {
+  const rows = Array.isArray(data?.data?.kpi) ? data.data.kpi : [];
+  const box = document.getElementById('sheetKpiGrid');
+
+  if (!box) return;
+
+  if (!rows.length) {
+    box.innerHTML = '<div style="color:var(--muted);">KPI 시트 데이터를 찾지 못했습니다.</div>';
+    return;
+  }
+
+  box.innerHTML = rows.map(row => {
+    const key = row.kpi || row.KPI || row.지표 || row.label || '항목';
+    const value = row.value || row.Value || row.값 || '-';
+    return `
+      <article class="mini">
+        <div class="label">${key}</div>
+        <div class="value">${value}</div>
+      </article>
+    `;
+  }).join('');
+}
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwwRQEieMQ1nwTCzgl_PLD_ZFtbe4k7nfzb5KCHKR5SfbhX-MULKcOk3RMP128-4La58Q/exec";
 
     let dashboardData = null;
     let currentRows = [];
@@ -504,7 +526,17 @@
         </div>
       `).join('');
     }
-
+<section class="card" style="margin-bottom:16px;">
+  <div class="card-head">
+    <div>
+      <h2 class="card-title">KPI 시트 값</h2>
+      <p class="card-desc">엑셀에서 만든 함수 결과를 그대로 표시합니다.</p>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="sheetKpiGrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;"></div>
+  </div>
+</section>
     function renderKPIs(data) {
       const summary = data.summary || {};
       el('salesVal').textContent = fmtCurrency(summary.totalSales);
@@ -627,6 +659,7 @@
         el('updatedTag').textContent = `업데이트 ${fmtDateTime(json.updatedAt)}`;
 
         renderKPIs(json);
+        renderSheetKpis(json);
         renderInsights(json);
         renderCharts(json);
         renderTable();
