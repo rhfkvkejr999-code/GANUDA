@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>재고·매출 대시보드</title>
+  <title>재고 · 매출 대시보드</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -18,241 +18,98 @@
       --line: #e5e7eb;
       --primary: #01696f;
       --primary-weak: #dff5f3;
-      --warning: #b45309;
       --danger: #b42318;
-      --success: #2f6b2f;
       --shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
       --radius: 18px;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       background: linear-gradient(180deg, #f7f6f2 0%, #eef6f6 100%);
       color: var(--text);
       font-family: 'Inter', 'Noto Sans KR', sans-serif;
     }
-    .wrap {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 24px;
-    }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 24px; }
     .top {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
+      display: flex; justify-content: space-between; gap: 16px; align-items: flex-start;
+      margin-bottom: 20px; flex-wrap: wrap;
     }
-    .brand {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
+    .brand { display: flex; gap: 14px; align-items: center; }
     .logo {
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
-      background: var(--primary);
-      color: white;
-      display: grid;
-      place-items: center;
-      box-shadow: var(--shadow);
+      width: 50px; height: 50px; border-radius: 16px; background: var(--primary); color: white;
+      display: grid; place-items: center; box-shadow: var(--shadow);
     }
-    h1 {
-      margin: 0;
-      font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.4rem);
-      line-height: 1.08;
-    }
-    .sub {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    button, select, input {
-      font: inherit;
-    }
+    h1 { margin: 0; font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.4rem); line-height: 1.08; }
+    .sub { margin-top: 6px; color: var(--muted); font-size: 0.95rem; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    button, select, input { font: inherit; }
     .control, .btn {
-      height: 44px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      padding: 0 14px;
+      height: 44px; border-radius: 12px; border: 1px solid var(--line);
+      background: var(--surface); padding: 0 14px;
     }
-    .btn {
-      cursor: pointer;
-      font-weight: 700;
-    }
-    .btn.primary {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-    .hero-grid, .kpi-grid, .content-grid {
-      display: grid;
-      gap: 16px;
-    }
-    .hero-grid {
-      grid-template-columns: 1.25fr 0.75fr;
-      margin-bottom: 16px;
-    }
-    .kpi-grid {
-      grid-template-columns: repeat(4, 1fr);
-      margin-bottom: 16px;
-    }
-    .content-grid {
-      grid-template-columns: 1.2fr 0.8fr;
-      margin-bottom: 16px;
-    }
+    .btn { cursor: pointer; font-weight: 700; }
+    .btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .kpi-grid, .hero-grid, .content-grid { display: grid; gap: 16px; }
+    .kpi-grid { grid-template-columns: repeat(3, 1fr); margin-bottom: 16px; }
+    .hero-grid { grid-template-columns: 1.25fr 0.75fr; margin-bottom: 16px; }
+    .content-grid { grid-template-columns: 1.2fr 0.8fr; margin-bottom: 16px; }
     .card {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(31,41,55,0.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      background: rgba(255,255,255,0.92); border: 1px solid rgba(31,41,55,0.08);
+      border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
       backdrop-filter: blur(10px);
     }
     .card-head {
-      padding: 18px 20px 0;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      padding: 18px 20px 0; display: flex; justify-content: space-between; gap: 12px;
+      align-items: flex-start; flex-wrap: wrap;
     }
-    .card-title {
-      margin: 0;
-      font-size: 1.02rem;
-      font-weight: 800;
-    }
-    .card-desc {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-    .card-body {
-      padding: 18px 20px 20px;
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
+    .card-title { margin: 0; font-size: 1.02rem; font-weight: 800; }
+    .card-desc { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
+    .card-body { padding: 18px 20px 20px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
     .mini {
-      padding: 14px;
-      border-radius: 14px;
-      background: var(--surface-2);
-      border: 1px solid var(--line);
+      padding: 14px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--line);
     }
     .mini .label, .kpi .label {
-      font-size: 0.84rem;
-      color: var(--muted);
-      margin-bottom: 8px;
+      font-size: 0.84rem; color: var(--muted); margin-bottom: 8px;
     }
     .mini .value, .kpi .value {
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; word-break: break-word;
     }
-    .kpi {
-      padding: 18px;
+    .kpi { padding: 18px; }
+    .kpi .value { font-size: 2rem; }
+    .kpi .delta {
+      display: inline-flex; margin-top: 8px; padding: 6px 10px; border-radius: 999px;
+      background: var(--primary-weak); color: var(--primary); font-size: 0.83rem; font-weight: 700;
     }
-    .kpi .value {
-      font-size: 1.9rem;
-    }
-    .delta {
-      display: inline-flex;
-      margin-top: 8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--primary-weak);
-      color: var(--primary);
-      font-size: 0.83rem;
-      font-weight: 700;
-    }
-    .chart-wrap {
-      position: relative;
-      height: 320px;
-    }
+    .chart-wrap { position: relative; height: 320px; }
     .chart-wrap.tall { height: 360px; }
-    .insight-list {
-      display: grid;
-      gap: 12px;
-    }
+    .insight-list { display: grid; gap: 12px; }
     .insight-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--line);
+      display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line);
     }
     .insight-item:last-child { border-bottom: none; }
     .tag {
-      display: inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--surface-2);
-      color: var(--muted);
-      font-size: 0.8rem;
-      font-weight: 700;
+      display: inline-flex; padding: 6px 10px; border-radius: 999px; background: var(--surface-2);
+      color: var(--muted); font-size: 0.8rem; font-weight: 700;
     }
-    .table-tools {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-    .table-wrap {
-      overflow: auto;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 860px;
-      background: white;
-    }
+    .table-tools { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 14px; }
+    table { width: 100%; border-collapse: collapse; min-width: 860px; background: white; }
     th, td {
-      padding: 13px 14px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-      font-size: 0.92rem;
-      white-space: nowrap;
+      padding: 13px 14px; border-bottom: 1px solid var(--line); text-align: left;
+      font-size: 0.92rem; white-space: nowrap;
     }
-    th {
-      background: #f9fafb;
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      font-weight: 800;
-    }
-    .status {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    th { background: #f9fafb; position: sticky; top: 0; z-index: 1; font-weight: 800; }
+    .status { margin-top: 10px; color: var(--muted); font-size: 0.9rem; }
     .status.error { color: var(--danger); }
-    .footer-note {
-      padding: 4px 2px 20px;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
+    .footer-note { padding: 4px 2px 20px; color: var(--muted); font-size: 0.88rem; }
     @media (max-width: 1100px) {
       .hero-grid, .content-grid { grid-template-columns: 1fr; }
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .kpi-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 680px) {
       .wrap { padding: 16px; }
-      .kpi-grid, .hero-stats { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr; }
       .actions { width: 100%; }
       .control { width: 100%; }
       .btn { flex: 1; }
@@ -273,7 +130,7 @@
           </svg>
         </div>
         <div>
-          <h1>재고 · 매출 통합 대시보드</h1>
+          <h1>재고 · 매출 대시보드</h1>
           <div class="sub" id="subInfo">Google Apps Script 웹앱 데이터를 불러오는 중입니다.</div>
         </div>
       </div>
@@ -285,9 +142,18 @@
           <option value="inbound">Inbound</option>
           <option value="outbound">Outbound</option>
           <option value="inventory">Inventory</option>
+          <option value="kpi">KPI</option>
+          <option value="summary">Summary</option>
         </select>
         <button id="refreshBtn" class="btn primary">새로고침</button>
       </div>
+    </section>
+
+    <section class="kpi-grid" id="topKpiGrid">
+      <article class="card kpi">
+        <div class="label">KPI</div>
+        <div class="value">로딩 중...</div>
+      </article>
     </section>
 
     <section class="hero-grid">
@@ -330,29 +196,6 @@
         <div class="card-body">
           <div class="insight-list" id="insightList"></div>
         </div>
-      </article>
-    </section>
-
-    <section class="kpi-grid">
-      <article class="card kpi">
-        <div class="label">총 매출액</div>
-        <div class="value" id="salesVal">-</div>
-        <div class="delta">실매출 기준</div>
-      </article>
-      <article class="card kpi">
-        <div class="label">총 입고금액</div>
-        <div class="value" id="inboundVal">-</div>
-        <div class="delta">누적 구매 기준</div>
-      </article>
-      <article class="card kpi">
-        <div class="label">현재고</div>
-        <div class="value" id="stockVal">-</div>
-        <div class="delta">Inventory 집계</div>
-      </article>
-      <article class="card kpi">
-        <div class="label">상품 수</div>
-        <div class="value" id="productCountVal">-</div>
-        <div class="delta">등록 SKU 기준</div>
       </article>
     </section>
 
@@ -406,56 +249,29 @@
   </div>
 
   <script>
-    function renderSheetKpis(data) {
-  const rows = Array.isArray(data?.data?.kpi) ? data.data.kpi : [];
-  const box = document.getElementById('sheetKpiGrid');
-
-  if (!box) return;
-
-  if (!rows.length) {
-    box.innerHTML = '<div style="color:var(--muted);">KPI 시트 데이터를 찾지 못했습니다.</div>';
-    return;
-  }
-
-  box.innerHTML = rows.map(row => {
-    const key = row.kpi || row.KPI || row.지표 || row.label || '항목';
-    const value = row.value || row.Value || row.값 || '-';
-    return `
-      <article class="mini">
-        <div class="label">${key}</div>
-        <div class="value">${value}</div>
-      </article>
-    `;
-  }).join('');
-}
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwwRQEieMQ1nwTCzgl_PLD_ZFtbe4k7nfzb5KCHKR5SfbhX-MULKcOk3RMP128-4La58Q/exec";
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxhsnO5IjKlRQOroESdgmemapBW0TZXa3_-xsCheM-gWppNqXYXa5u_xbNUsDq_eAR29A/exec";
 
     let dashboardData = null;
-    let currentRows = [];
     let charts = {};
 
     const el = id => document.getElementById(id);
-
+    const safeArray = v => Array.isArray(v) ? v : [];
     const fmtNumber = value => new Intl.NumberFormat('ko-KR').format(Number(value || 0));
     const fmtCurrency = value => new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW', maximumFractionDigits: 0 }).format(Number(value || 0));
     const fmtDateTime = value => {
       try { return new Date(value).toLocaleString('ko-KR'); } catch { return value; }
     };
 
-    function setStatus(msg, isError = false) {
-      el('statusText').textContent = msg;
-      el('statusText').className = isError ? 'status error' : 'status';
-    }
-
-    function safeArray(v) {
-      return Array.isArray(v) ? v : [];
-    }
-
     function toNumber(v) {
       if (typeof v === 'number') return v;
       if (v === null || v === undefined || v === '') return 0;
-      const n = Number(String(v).replace(/,/g, '').trim());
+      const n = Number(String(v).replace(/,/g, '').replace(/[^0-9.-]/g, '').trim());
       return Number.isFinite(n) ? n : 0;
+    }
+
+    function setStatus(msg, isError = false) {
+      el('statusText').textContent = msg;
+      el('statusText').className = isError ? 'status error' : 'status';
     }
 
     function destroyCharts() {
@@ -482,7 +298,6 @@
     }
 
     function buildInsights(data) {
-      const summary = data.summary || {};
       const products = safeArray(data.data?.products);
       const sales = safeArray(data.data?.sales);
       const inventory = safeArray(data.data?.inventory);
@@ -526,39 +341,68 @@
         </div>
       `).join('');
     }
-<section class="card" style="margin-bottom:16px;">
-  <div class="card-head">
-    <div>
-      <h2 class="card-title">KPI 시트 값</h2>
-      <p class="card-desc">엑셀에서 만든 함수 결과를 그대로 표시합니다.</p>
-    </div>
-  </div>
-  <div class="card-body">
-    <div id="sheetKpiGrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;"></div>
-  </div>
-</section>
-    function renderKPIs(data) {
-      const summary = data.summary || {};
-      el('salesVal').textContent = fmtCurrency(summary.totalSales);
-      el('inboundVal').textContent = fmtCurrency(summary.totalInbound);
-      el('stockVal').textContent = fmtNumber(summary.totalStock);
-      el('productCountVal').textContent = fmtNumber(safeArray(data.data?.products).length);
-      el('salesQtyVal').textContent = fmtNumber(summary.totalSalesQty);
-      el('inboundQtyVal').textContent = fmtNumber(summary.totalInboundQty);
-      el('outboundQtyVal').textContent = fmtNumber(summary.totalOutboundQty);
+
+    function renderTopKpisFromSheet(data) {
+      const rows = Array.isArray(data?.data?.kpi) ? data.data.kpi : [];
+      const box = document.getElementById('topKpiGrid');
+      if (!box) return;
+
+      if (!rows.length) {
+        box.innerHTML = `
+          <article class="card kpi">
+            <div class="label">KPI</div>
+            <div class="value">데이터 없음</div>
+            <div class="delta">KPI 시트를 확인하세요</div>
+          </article>
+        `;
+        return;
+      }
+
+      box.innerHTML = rows.map(row => {
+        const key = row.kpi || row.KPI || row.지표 || row.label || row.column_1 || '항목';
+        const value = row.value || row.Value || row.값 || row.column_2 || '-';
+        return `
+          <article class="card kpi">
+            <div class="label">${key}</div>
+            <div class="value">${value}</div>
+            <div class="delta">KPI 시트 값</div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderMiniStats(data) {
+      const sales = safeArray(data.data?.sales);
+      const inbound = safeArray(data.data?.inbound);
+      const outbound = safeArray(data.data?.outbound);
+
+      const totalSalesQty = sales.reduce((sum, row) => sum + toNumber(row['수량'] || row['판매수량']), 0);
+      const totalInboundQty = inbound.reduce((sum, row) => sum + toNumber(row['수량'] || row['입고수량']), 0);
+      const totalOutboundQty = outbound.reduce((sum, row) => sum + toNumber(row['수량'] || row['출고수량']), 0);
+
+      el('salesQtyVal').textContent = fmtNumber(totalSalesQty);
+      el('inboundQtyVal').textContent = fmtNumber(totalInboundQty);
+      el('outboundQtyVal').textContent = fmtNumber(totalOutboundQty);
     }
 
     function renderCharts(data) {
       destroyCharts();
 
-      const summary = data.summary || {};
+      const sales = safeArray(data.data?.sales);
+      const inbound = safeArray(data.data?.inbound);
+      const inventory = safeArray(data.data?.inventory);
+
+      const totalSales = sales.reduce((sum, row) => sum + toNumber(row['판매금액'] || row['매출액'] || row['총금액']), 0);
+      const totalInbound = inbound.reduce((sum, row) => sum + toNumber(row['총금액'] || row['금액'] || row['입고금액']), 0);
+      const totalStock = inventory.reduce((sum, row) => sum + toNumber(row['현재고'] || row['재고']), 0);
+
       charts.overview = new Chart(el('overviewChart'), {
         type: 'bar',
         data: {
           labels: ['매출액', '입고금액', '현재고'],
           datasets: [{
             label: '운영 수치',
-            data: [summary.totalSales || 0, summary.totalInbound || 0, summary.totalStock || 0],
+            data: [totalSales, totalInbound, totalStock],
             backgroundColor: ['#01696f', '#5b8def', '#e3a008'],
             borderRadius: 10
           }]
@@ -571,7 +415,7 @@
         }
       });
 
-      const salesTop = aggregateSalesByProduct(safeArray(data.data?.sales));
+      const salesTop = aggregateSalesByProduct(sales);
       charts.topSales = new Chart(el('topSalesChart'), {
         type: 'bar',
         data: {
@@ -592,7 +436,7 @@
         }
       });
 
-      const inv = inventoryDataset(safeArray(data.data?.inventory));
+      const inv = inventoryDataset(inventory);
       charts.inventory = new Chart(el('inventoryChart'), {
         type: 'bar',
         data: {
@@ -610,18 +454,21 @@
       });
     }
 
-    function normalizeRowsForTable(rows, keyword) {
-      if (!keyword) return rows;
-      const q = keyword.toLowerCase();
-      return rows.filter(row => Object.values(row).some(v => String(v).toLowerCase().includes(q)));
+    function formatCell(value) {
+      if (typeof value === 'number') {
+        if (String(value).includes('.') && value > 0 && value < 1) return `${(value * 100).toFixed(1)}%`;
+        return fmtNumber(value);
+      }
+      return value ?? '';
     }
 
     function renderTable() {
       const tableKey = el('tableSelect').value;
-      const keyword = el('searchInput').value.trim();
+      const keyword = el('searchInput').value.trim().toLowerCase();
       const rows = safeArray(dashboardData?.data?.[tableKey]);
-      const filtered = normalizeRowsForTable(rows, keyword);
-      currentRows = filtered;
+      const filtered = keyword
+        ? rows.filter(row => Object.values(row).some(v => String(v).toLowerCase().includes(keyword)))
+        : rows;
 
       if (!filtered.length) {
         el('tableWrap').innerHTML = '<div style="padding:32px; color:var(--muted);">표시할 데이터가 없습니다.</div>';
@@ -633,17 +480,10 @@
       const columns = Object.keys(filtered[0]);
       const thead = `<thead><tr>${columns.map(c => `<th>${c}</th>`).join('')}</tr></thead>`;
       const tbody = `<tbody>${filtered.map(row => `<tr>${columns.map(c => `<td>${formatCell(row[c])}</td>`).join('')}</tr>`).join('')}</tbody>`;
+
       el('tableWrap').innerHTML = `<table>${thead}${tbody}</table>`;
       el('rowInfo').textContent = `${fmtNumber(filtered.length)} rows`;
       setStatus(`${tableKey} 데이터 ${fmtNumber(filtered.length)}건 표시 중`);
-    }
-
-    function formatCell(value) {
-      if (typeof value === 'number') {
-        if (String(value).includes('.') && value > 0 && value < 1) return `${(value * 100).toFixed(1)}%`;
-        return fmtNumber(value);
-      }
-      return value ?? '';
     }
 
     async function loadData() {
@@ -655,11 +495,11 @@
         if (!json.success) throw new Error(json.message || '데이터 로드 실패');
 
         dashboardData = json;
-        el('subInfo').textContent = `${json.spreadsheetName} · 시트 ${json.sheetNames.length}개 · ${fmtDateTime(json.updatedAt)} 기준`;
+        el('subInfo').textContent = `${json.spreadsheetName || 'Spreadsheet'} · 시트 ${(json.sheetNames || []).length}개 · ${fmtDateTime(json.updatedAt)} 기준`;
         el('updatedTag').textContent = `업데이트 ${fmtDateTime(json.updatedAt)}`;
 
-        renderKPIs(json);
-        renderSheetKpis(json);
+        renderTopKpisFromSheet(json);
+        renderMiniStats(json);
         renderInsights(json);
         renderCharts(json);
         renderTable();
@@ -667,6 +507,13 @@
         console.error(error);
         setStatus(`오류: ${error.message}`, true);
         el('subInfo').textContent = '웹앱 URL, 배포 권한 또는 JSON 응답 형식을 확인하세요.';
+        el('topKpiGrid').innerHTML = `
+          <article class="card kpi">
+            <div class="label">KPI</div>
+            <div class="value">불러오기 실패</div>
+            <div class="delta">웹앱 응답 확인 필요</div>
+          </article>
+        `;
       }
     }
 
